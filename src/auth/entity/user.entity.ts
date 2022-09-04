@@ -16,6 +16,9 @@ export class User {
     email: string
 
     @Column()
+    name: string
+
+    @Column()
     password: string
 
     @Column({type: 'enum', enum:UserRole, default: UserRole.USER})
