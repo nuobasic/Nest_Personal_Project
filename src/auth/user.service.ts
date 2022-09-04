@@ -41,6 +41,10 @@ export class UserService{
     async findUser(id: number ){
             return this.userRepository.findOne(id);
         }
+
+    async deleteUser(id: number): Promise<void>{
+        await this.userRepository.delete(id);
+    }    
         
     async update(id: number, user: User): Promise<void> {
             const existedCat = await this.findUser(id);

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req, Res, UseGuards, Param, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res, UseGuards, Param, Put, Delete } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
@@ -34,8 +34,9 @@ export class AuthController {
         return user
     }
     @Get(':id')
-    async findUser(@Param('id')id: number, @Res() res:Response){
-        this.userService.findUser(id)
+    async findUser(@Param('id')id: number){
+       return await this.userService.findUser(id)
+       
     }
 
     @Put(':id')
@@ -43,5 +44,10 @@ export class AuthController {
         await this. userService.transfomrPassword2(user)
         this.userService.update(id, user);
         return `변경 성공`;
+    }
+    @Delete(':id')
+    async deleteUser(@Param('id')id: number){
+        await this.userService.deleteUser(id)
+        return '탈퇴 성공'
     }
 } 
