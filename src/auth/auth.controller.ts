@@ -34,7 +34,7 @@ export class AuthController {
         return user
     }
     @Get(':id')
-    async findUser(@Param('id')id: number){
+    async findUser(@Param('id')id: number): Promise<UserResponse>{
        return await this.userService.findUser(id)
        
     }

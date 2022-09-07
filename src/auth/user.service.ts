@@ -38,8 +38,9 @@ export class UserService{
         return Promise.resolve()
     }
     
-    async findUser(id: number ){
-            return this.userRepository.findOne(id);
+    async findUser(id: number ): Promise<UserResponse>{
+           const user: User = await this.userRepository.findOne({id})
+           return UserResponse.of(user)
         }
 
     async deleteUser(id: number): Promise<void>{
